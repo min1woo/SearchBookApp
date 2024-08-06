@@ -12,6 +12,10 @@
 		458FFCA52C5CD635003B5236 /* SearchBookApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 458FFCA32C5CD635003B5236 /* SearchBookApp.xcdatamodeld */; };
 		458FFCA72C5CD636003B5236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 458FFCA62C5CD636003B5236 /* Assets.xcassets */; };
 		458FFCAA2C5CD636003B5236 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 458FFCA92C5CD636003B5236 /* Base */; };
+		458FFCB22C5CEA57003B5236 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FFCB12C5CEA57003B5236 /* DetailViewController.swift */; };
+		458FFCB42C5CEA89003B5236 /* SaveBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FFCB32C5CEA89003B5236 /* SaveBookViewController.swift */; };
+		458FFCC12C60EC1B003B5236 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 458FFCC02C60EC1B003B5236 /* SnapKit */; };
+		458FFCC42C60F0AF003B5236 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FFCC32C60F0AF003B5236 /* BookModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,9 @@
 		458FFCA62C5CD636003B5236 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		458FFCA92C5CD636003B5236 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		458FFCAB2C5CD636003B5236 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		458FFCB12C5CEA57003B5236 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		458FFCB32C5CEA89003B5236 /* SaveBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBookViewController.swift; sourceTree = "<group>"; };
+		458FFCC32C60F0AF003B5236 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				458FFCC12C60EC1B003B5236 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,14 +62,33 @@
 		458FFC992C5CD635003B5236 /* SearchBookApp */ = {
 			isa = PBXGroup;
 			children = (
+				458FFCC22C60F09A003B5236 /* Model */,
+				458FFCB52C5CEA8B003B5236 /* VC */,
 				458FFC9A2C5CD635003B5236 /* AppDelegate.swift */,
-				458FFC9E2C5CD635003B5236 /* MainViewController.swift */,
 				458FFCA62C5CD636003B5236 /* Assets.xcassets */,
 				458FFCA82C5CD636003B5236 /* LaunchScreen.storyboard */,
 				458FFCAB2C5CD636003B5236 /* Info.plist */,
 				458FFCA32C5CD635003B5236 /* SearchBookApp.xcdatamodeld */,
 			);
 			path = SearchBookApp;
+			sourceTree = "<group>";
+		};
+		458FFCB52C5CEA8B003B5236 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				458FFC9E2C5CD635003B5236 /* MainViewController.swift */,
+				458FFCB32C5CEA89003B5236 /* SaveBookViewController.swift */,
+				458FFCB12C5CEA57003B5236 /* DetailViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		458FFCC22C60F09A003B5236 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				458FFCC32C60F0AF003B5236 /* BookModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +107,9 @@
 			dependencies = (
 			);
 			name = SearchBookApp;
+			packageProductDependencies = (
+				458FFCC02C60EC1B003B5236 /* SnapKit */,
+			);
 			productName = SearchBookApp;
 			productReference = 458FFC972C5CD635003B5236 /* SearchBookApp.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +138,9 @@
 				Base,
 			);
 			mainGroup = 458FFC8E2C5CD635003B5236;
+			packageReferences = (
+				458FFCBF2C60EC1B003B5236 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 458FFC982C5CD635003B5236 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,9 +167,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				458FFCC42C60F0AF003B5236 /* BookModel.swift in Sources */,
+				458FFCB42C5CEA89003B5236 /* SaveBookViewController.swift in Sources */,
 				458FFCA52C5CD635003B5236 /* SearchBookApp.xcdatamodeld in Sources */,
 				458FFC9F2C5CD635003B5236 /* MainViewController.swift in Sources */,
 				458FFC9B2C5CD635003B5236 /* AppDelegate.swift in Sources */,
+				458FFCB22C5CEA57003B5236 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +385,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		458FFCBF2C60EC1B003B5236 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		458FFCC02C60EC1B003B5236 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 458FFCBF2C60EC1B003B5236 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		458FFCA32C5CD635003B5236 /* SearchBookApp.xcdatamodeld */ = {

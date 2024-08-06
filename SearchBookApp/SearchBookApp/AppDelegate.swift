@@ -16,7 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UINavigationController(rootViewController: MainViewController())
+        
+        let tabBarController = UITabBarController()
+        tabBarController.tabBar.backgroundColor = .white
+        
+        let firstVC = MainViewController()
+        firstVC.tabBarItem = UITabBarItem(title: "검색", image: nil, tag: 0)
+        
+        
+        let secondVC = SaveBookViewController()
+        secondVC.tabBarItem = UITabBarItem(title: "담은 책 리스트", image: nil, tag: 1)
+        
+        tabBarController.viewControllers = [firstVC, secondVC]
+        
+        window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
         

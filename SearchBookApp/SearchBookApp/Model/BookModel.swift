@@ -8,8 +8,8 @@
 import Foundation
 
 struct BookModel: Codable {
-    let title: String?
-    let authors: String?
-    let contents: String?
-    let thumbnail: String?
+    let title: String? // 책 제목
+    let authors: String? // 책 저자
+    let contents: String? // 책 줄거리
+    let thumbnail: String? // 책 포스터
 }

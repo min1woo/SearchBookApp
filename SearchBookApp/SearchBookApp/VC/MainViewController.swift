@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(SearchBookCell.self, forCellWithReuseIdentifier: SearchBookCell.id)
+        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.id)
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -61,11 +62,27 @@ class MainViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 10
         
+        // 헤더 뷰 사이즈 설정
+//        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(70), heightDimension: .fractionalHeight(30))
+//        let header = NSCollectionLayoutBoundarySupplementaryItem(
+//            layoutSize: headerSize,
+//            elementKind: UICollectionView.elementKindSectionHeader,
+//            alignment: .top
+//        )
+//        
+//        section.boundarySupplementaryItems = [header]
+//        
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
     
- 
+    // 모달 메서드 (디테일 뷰를 띄울 것이다)
+    private func showModal(viewController: UIViewController) {
+        if let sheet = viewController.sheetPresentationController {
+            sheet.detents = [.large()]
+        }
+        self.present(viewController, animated: true)
+    }
     
 }
 
@@ -84,8 +101,29 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+    // 컬렉션 뷰의 섹션 헤더뷰를 넣는 메서드
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            fatalError("실패")
+        }
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.id, for: indexPath) as! SectionHeaderView
+        headerView.configure(with: "검색 결과")
+        return headerView
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 10
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailView = DetailViewController()
+        showModal(viewController: detailView)
     }
     
 }

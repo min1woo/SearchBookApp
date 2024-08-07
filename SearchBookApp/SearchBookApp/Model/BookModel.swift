@@ -12,4 +12,5 @@ struct BookModel: Codable {
     let authors: String? // 책 저자
     let contents: String? // 책 줄거리
     let thumbnail: String? // 책 포스터
+    let price: Int? // 책 가격
 }

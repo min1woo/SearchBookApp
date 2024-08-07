@@ -12,7 +12,8 @@ class MainViewController: UIViewController {
     // 검색창
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-//        searchBar.delegate = self
+        searchBar.delegate = self
+        searchBar.placeholder = "찾고싶은 책을 입력해 주세요."
         return searchBar
     }()
     
@@ -60,7 +61,7 @@ class MainViewController: UIViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         // 섹션 설정
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
+        section.interGroupSpacing = 5
         
         // 헤더 뷰 사이즈 설정
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(30))
@@ -86,11 +87,11 @@ class MainViewController: UIViewController {
     
 }
 
-//extension MainViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        <#code#>
-//    }
-//}
+extension MainViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("검색")
+    }
+}
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -113,10 +114,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return headerView
     }
     
+    // 컬렉션 뷰의 셀 갯수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
     
+    // 컬렉션 뷰의 섹션 갯수
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

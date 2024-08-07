@@ -63,15 +63,15 @@ class MainViewController: UIViewController {
         section.interGroupSpacing = 10
         
         // 헤더 뷰 사이즈 설정
-//        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(70), heightDimension: .fractionalHeight(30))
-//        let header = NSCollectionLayoutBoundarySupplementaryItem(
-//            layoutSize: headerSize,
-//            elementKind: UICollectionView.elementKindSectionHeader,
-//            alignment: .top
-//        )
-//        
-//        section.boundarySupplementaryItems = [header]
-//        
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(30))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        
+        section.boundarySupplementaryItems = [header]
+        
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }

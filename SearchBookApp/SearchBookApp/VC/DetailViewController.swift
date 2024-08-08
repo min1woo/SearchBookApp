@@ -167,11 +167,7 @@ class DetailViewController: UIViewController {
     private func loadData() {
         guard let book = book else {return}
         titlelabel.text = book.title
-        if 글쓴이.text == book.authors[0] {
-            글쓴이.text = book.authors[0]
-        } else {
-            글쓴이.text = "저자 정보 없음"
-        }
+        글쓴이.text = book.authors[0] 
         priceLabel.text = "\(book.price)원"
         contentsLabel.text = book.contents
         
@@ -195,7 +191,12 @@ class DetailViewController: UIViewController {
     
     // 담기 버튼 액션 메서드
     @objc private func putinButtonTapped() {
-        
+        guard let booktitle = titlelabel.text, !booktitle.isEmpty,
+              let authors = 글쓴이.text, !authors.isEmpty,
+              let bookPrice = priceLabel.text, !bookPrice.isEmpty else {
+            return
+        }
+        SaveBookCoreData.shared.saveBookInfo(bookTitle: booktitle, authors: authors, bookPrice: bookPrice)
     }
 }
 

@@ -58,8 +58,10 @@ class SearchBookCell: UICollectionViewCell {
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(bookImage.snp.trailing).offset(10)
+            $0.height.equalTo(50)
+            $0.width.equalTo(200)
         }
-        // 테두리 색상설정
+        // 셀 테두리 색상설정
         self.layer.borderColor = UIColor.black.cgColor
         // 테두리 두께 설정
         self.layer.borderWidth = 2.0
@@ -67,6 +69,7 @@ class SearchBookCell: UICollectionViewCell {
         self.layer.cornerRadius = 8.0
         // 모서리가 둥글어도 되는지 여부 설정
         self.clipsToBounds = true
+        
     }
     
     func configure(with book: BookModel) {

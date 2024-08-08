@@ -27,10 +27,11 @@ class SearchBookCell: UICollectionViewCell {
         label.text = "게임속 바바리안으로 살아남기"
         label.font = .boldSystemFont(ofSize: 17)
         label.textAlignment = .left
+        label.numberOfLines = 2
         label.textColor = .black
         return label
     }()
- 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
@@ -68,4 +69,18 @@ class SearchBookCell: UICollectionViewCell {
         self.clipsToBounds = true
     }
     
+    func configure(with book: BookModel) {
+        titleLabel.text = book.title
+        if let url = URL(string: book.thumbnail) {
+            URLSession.shared.dataTask(with: url) { data, _, _ in
+                if let data = data {
+                    DispatchQueue.main.async {
+                        self.bookImage.image = UIImage(data: data)
+                    }
+                }
+            }.resume()
+        }
+    }
+    
 }
+

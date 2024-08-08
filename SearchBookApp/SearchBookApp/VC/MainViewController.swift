@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
+    // 책 모델
+    var books: [BookModel] = []
+    
     // 검색창
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -89,7 +92,18 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("검색")
+        guard let query = searchBar.text, !query.isEmpty else { return }
+        BookNetWork.shared.fetchBooks(query: query) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let fetchedBooks):
+                    self?.books = fetchedBooks
+                    self?.bookCollectionView.reloadData()
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }
+        }
     }
 }
 
@@ -99,6 +113,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchBookCell.id, for: indexPath) as? SearchBookCell else {
             return UICollectionViewCell()
         }
+        let book = books[indexPath.row]
+        cell.configure(with: book)
         return cell
     }
     
@@ -116,7 +132,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     // 컬렉션 뷰의 셀 갯수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return books.count
     }
     
     // 컬렉션 뷰의 섹션 갯수
@@ -126,6 +142,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailView = DetailViewController()
+        detailView.book = books[indexPath.row] // 디테일 뷰에 책 정보 전달
+
         showModal(viewController: detailView)
     }
     

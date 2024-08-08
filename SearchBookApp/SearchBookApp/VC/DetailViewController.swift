@@ -10,6 +10,9 @@ import SnapKit
 
 class DetailViewController: UIViewController {
     
+    // 책 정보 모델
+    var book: BookModel?
+    
     // 스크롤 뷰
     let scrollView = UIScrollView()
     let scrollContentView = UIView()
@@ -18,8 +21,9 @@ class DetailViewController: UIViewController {
     let titlelabel: UILabel = {
         let label = UILabel()
         label.text = "게임속 바바리안으로 살아남기"
-        label.font = .boldSystemFont(ofSize: 25)
+        label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .black
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -37,7 +41,7 @@ class DetailViewController: UIViewController {
     // 책 표지 미리보기 이미지
     let bookImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         imageView.image = UIImage(named: "베헬라")
@@ -92,6 +96,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        loadData()
         
     }
     
@@ -131,6 +136,7 @@ class DetailViewController: UIViewController {
         titlelabel.snp.makeConstraints {
             $0.top.equalTo(scrollContentView).inset(10)
             $0.centerX.equalToSuperview()
+            $0.height.equalTo(50)
         }
         
         글쓴이.snp.makeConstraints {
@@ -156,6 +162,30 @@ class DetailViewController: UIViewController {
             $0.trailing.equalToSuperview().offset(-15)
 
         }
+    }
+    
+    private func loadData() {
+        guard let book = book else {return}
+        titlelabel.text = book.title
+        if 글쓴이.text == book.authors[0] {
+            글쓴이.text = book.authors[0]
+        } else {
+            글쓴이.text = "저자 정보 없음"
+        }
+        priceLabel.text = "\(book.price)원"
+        contentsLabel.text = book.contents
+        
+        if let url = URL(string: book.thumbnail) {
+            URLSession.shared.dataTask(with: url) { data, _, _ in
+                if let data = data {
+                    DispatchQueue.main.async {
+                        self.bookImage.image = UIImage(data: data)
+                    }
+                }
+            }.resume()
+        }
+        
+        
     }
     
     // 닫기 버튼 액션 메서드

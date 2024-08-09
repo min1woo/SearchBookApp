@@ -52,4 +52,15 @@ class SaveBookCoreData {
         }
     }
     
+    // 책 정보를 삭제하는 메서드
+    func deleteBookInfo(bookInfo: BookInfo) {
+        context.delete(bookInfo)
+        
+        do {
+            try context.save()
+        } catch {
+            print("삭제실패: \(error)")
+        }
+    }
+    
 }

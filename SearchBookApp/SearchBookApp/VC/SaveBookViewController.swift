@@ -119,4 +119,17 @@ extension SaveBookViewController: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
+    // 셀을 스와이프 하여 데이터를 삭제하는 기능 구현
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // 데이터 소스에서 해당 항목 삭제
+            let bookInfoToDelete = bookInfos[indexPath.row]
+            SaveBookCoreData.shared.deleteBookInfo(bookInfo: bookInfoToDelete )
+            bookInfos.remove(at: indexPath.row)
+            
+            // 테이블 뷰 에서 셀 삭제
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
 }

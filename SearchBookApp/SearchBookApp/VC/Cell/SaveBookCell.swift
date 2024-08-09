@@ -54,8 +54,7 @@ class SaveBookCell: UITableViewCell {
     
     private func setupCell() {
         contentView.backgroundColor = .white
-        
-        contentView.layer.cornerRadius = 8
+    
         [bookTitle, authorsLabel, priceLabel].forEach { contentView.addSubview($0) }
         
         bookTitle.snp.makeConstraints {
@@ -79,12 +78,6 @@ class SaveBookCell: UITableViewCell {
         self.layer.borderColor = UIColor.black.cgColor
         // 테두리 두께 설정
         self.layer.borderWidth = 2.0
-        // 모서리 반경 설정
-        self.layer.cornerRadius = 10
-        // 모서리가 둥글어도 되는지 여부 설정
-        self.clipsToBounds = true
-        
-        self.layer.masksToBounds = true
     }
     
     // 셀 구성 메서드

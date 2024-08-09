@@ -28,6 +28,7 @@ class SaveBookCell: UITableViewCell {
         let label = UILabel()
         label.text = "정윤강"
         label.font = .systemFont(ofSize: 12)
+        label.numberOfLines = 2
         label.textAlignment = .center
         label.textColor = .gray
         return label
@@ -65,12 +66,14 @@ class SaveBookCell: UITableViewCell {
         }
         
         authorsLabel.snp.makeConstraints {
-            $0.leading.equalTo(bookTitle.snp.trailing).offset(10)
+            $0.leading.equalTo(bookTitle.snp.trailing).offset(5)
             $0.centerY.equalToSuperview()
+            $0.height.equalTo(45)
+            $0.width.equalTo(80)
         }
         
         priceLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-10)
+            $0.trailing.equalToSuperview().offset(-5)
             $0.centerY.equalToSuperview()
         }
         

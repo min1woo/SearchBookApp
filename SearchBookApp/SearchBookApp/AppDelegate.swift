@@ -18,14 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.backgroundColor = .systemPurple
+        tabBarController.tabBar.layer.borderWidth = 2
+        tabBarController.tabBar.layer.borderColor = UIColor.black.cgColor
         
         let firstVC = MainViewController()
         firstVC.tabBarItem = UITabBarItem(title: "검색", image: nil, tag: 0)
         
-        
         let secondVC = SaveBookViewController()
         secondVC.tabBarItem = UITabBarItem(title: "담은 책 리스트", image: nil, tag: 1)
+        
+        let nomalAttributes = [
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 25),
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        
+        firstVC.tabBarItem.setTitleTextAttributes(nomalAttributes, for: .normal)
+        secondVC.tabBarItem.setTitleTextAttributes(nomalAttributes, for: .normal)
         
         tabBarController.viewControllers = [firstVC, secondVC]
         

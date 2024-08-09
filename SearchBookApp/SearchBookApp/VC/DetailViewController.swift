@@ -196,11 +196,8 @@ class DetailViewController: UIViewController {
             return
         }
         SaveBookCoreData.shared.saveBookInfo(bookTitle: booktitle, authors: authors, bookPrice: bookPrice)
-        
-        let saveBooks = SaveBookCoreData.shared.fetchBookInfo()
-        for book in saveBooks {
-            print("title: \(book.bookTitle ?? "NO title"), authors: \(book.authors ?? "No authors"), bookPrice: \(book.bookPrice ?? "No Price" )")
-        }
+        self.dismiss(animated: true, completion: nil)
+    
     }
 }
 

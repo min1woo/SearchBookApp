@@ -35,10 +35,6 @@ class BookNetWork {
                 return
             }
             
-            if let jsonString = String(data: data, encoding: .utf8) {
-                print("Received JSON string: \(jsonString)")
-            }
-            
             do {
                 let decoder = JSONDecoder()
                 let responseData = try decoder.decode(SearchResponse.self, from: data)

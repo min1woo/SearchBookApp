@@ -97,7 +97,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         loadData()
-        
     }
     
     private func setupUI() {
@@ -186,7 +185,7 @@ class DetailViewController: UIViewController {
     
     // 닫기 버튼 액션 메서드
     @objc private func closeButtonTapped() {
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
     // 담기 버튼 액션 메서드
@@ -197,6 +196,11 @@ class DetailViewController: UIViewController {
             return
         }
         SaveBookCoreData.shared.saveBookInfo(bookTitle: booktitle, authors: authors, bookPrice: bookPrice)
+        
+        let saveBooks = SaveBookCoreData.shared.fetchBookInfo()
+        for book in saveBooks {
+            print("title: \(book.bookTitle ?? "NO title"), authors: \(book.authors ?? "No authors"), bookPrice: \(book.bookPrice ?? "No Price" )")
+        }
     }
 }
 

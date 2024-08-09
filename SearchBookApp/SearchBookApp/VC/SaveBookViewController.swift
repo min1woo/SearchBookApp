@@ -17,6 +17,7 @@ class SaveBookViewController: UIViewController {
         button.setTitle("전체삭제", for: .normal)
         button.setTitleColor(.lightGray, for: .normal)
         button.backgroundColor = .white
+        button.addTarget(self, action: #selector(allDeleteButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -48,6 +49,14 @@ class SaveBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        bookInfos = SaveBookCoreData.shared.fetchBookInfo()
+        tableVeiw.reloadData()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bookInfos = SaveBookCoreData.shared.fetchBookInfo()
+        tableVeiw.reloadData()
+        
     }
     
     private func setupUI() {
@@ -75,6 +84,16 @@ class SaveBookViewController: UIViewController {
             $0.trailing.equalToSuperview().offset(-10)
             $0.bottom.equalToSuperview().offset(-20)
         }
+        
+    }
+    
+    @objc private func allDeleteButtonTapped() {
+        SaveBookCoreData.shared.deleteAllBookInfo()
+        bookInfos = []
+        tableVeiw.reloadData()
+    }
+    
+    @objc private func addButtonTapped() {
         
     }
     

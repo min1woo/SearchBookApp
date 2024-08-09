@@ -15,7 +15,8 @@ class SaveBookCell: UITableViewCell {
     // 셀 안에 들어갈 책 제목
     let bookTitle: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 15)
+        label.text = "게임속 바바리안으로 살아남기"
+        label.font = .boldSystemFont(ofSize: 18)
         label.numberOfLines = 2
         label.textAlignment = .left
         label.textColor = .black
@@ -25,7 +26,8 @@ class SaveBookCell: UITableViewCell {
     // 셀 안에 들어갈 저자
     let authorsLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 7)
+        label.text = "정윤강"
+        label.font = .systemFont(ofSize: 12)
         label.textAlignment = .center
         label.textColor = .gray
         return label
@@ -34,7 +36,8 @@ class SaveBookCell: UITableViewCell {
     // 셀 안에 들어갈 책 가격
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 11)
+        label.text = "14000원"
+        label.font = .systemFont(ofSize: 16)
         label.textAlignment = .center
         label.textColor = .black
         return label
@@ -56,10 +59,10 @@ class SaveBookCell: UITableViewCell {
         [bookTitle, authorsLabel, priceLabel].forEach { contentView.addSubview($0) }
         
         bookTitle.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(5)
+            $0.leading.equalToSuperview().offset(10)
             $0.centerY.equalToSuperview()
-            $0.height.equalTo(55)
-            $0.width.equalTo(130)
+            $0.height.equalTo(45)
+            $0.width.equalTo(200)
         }
         
         authorsLabel.snp.makeConstraints {

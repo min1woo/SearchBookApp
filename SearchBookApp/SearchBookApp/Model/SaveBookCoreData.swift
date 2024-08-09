@@ -39,4 +39,17 @@ class SaveBookCoreData {
         }
     }
     
+    // 모든 책 정보를 삭제하는 함수
+    func deleteAllBookInfo() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = BookInfo.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            print("모든 책 정보 삭제 실패: \(error)")
+        }
+    }
+    
 }

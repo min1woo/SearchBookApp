@@ -17,12 +17,5 @@ struct BookModel: Codable {
     let contents: String // 책 줄거리
     let thumbnail: String // 책 포스터
     let price: Int // 책 가격
-    
-    enum codingKeys: String, CodingKey {
-        case title
-        case authors
-        case contents
-        case thumbnail
-        case price
-    }
+ 
 }
